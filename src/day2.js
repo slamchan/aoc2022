@@ -17,13 +17,18 @@ const calRes = (a, b) => {
   return shapes[b] + results.l;
 };
 
-console.log(
-  parsed
-    .map((p) => {
-      const res = calRes(p[0], p[1]);
-      return res;
-    })
-    .reduce((a, b) => a + b, 0)
-);
-
+console.log(parsed.map((p) => calRes(p[0], p[1])).reduce((a, b) => a + b, 0));
 console.log('\r\nAoC 2022 - Day 2 part 2');
+
+const points = { X: 0, Y: 3, Z: 6 };
+const mod = { X: -1, Y: 0, Z: 1 };
+const calRes2 = (a, b) => {
+  const shape =
+    shapes[a] + mod[b] === 4
+      ? 1
+      : shapes[a] + mod[b] === 0
+      ? 3
+      : shapes[a] + mod[b];
+  return shape + points[b];
+};
+console.log(parsed.map((p) => calRes2(p[0], p[1])).reduce((a, b) => a + b, 0));
