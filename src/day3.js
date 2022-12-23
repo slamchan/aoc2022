@@ -24,3 +24,15 @@ parsed.forEach((p) => {
 console.log(res);
 
 console.log('\r\nAoC 2022 - Day 3 part 2');
+
+const dataGroups = readInput('day3-1')
+  .split('\r\n')
+  .map((x, i, arr) => {
+    if (i * 3 >= arr.length - 1) {
+      return;
+    }
+    return values.indexOf([...arr[i * 3]].filter(
+      (s) => arr[i * 3 + 1].includes(s) && arr[i * 3 + 2].includes(s)
+    )[0]) + 1;
+  });
+console.log(dataGroups.filter(dg => dg).reduce((a, b) => a + b, 0));
